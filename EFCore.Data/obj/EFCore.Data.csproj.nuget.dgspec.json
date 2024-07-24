@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/kayc/repos/EFCore/EFCore.Domain/EFCore.Domain.csproj": {}
+    "/home/kayc/repos/EFCore/EFCore.Data/EFCore.Data.csproj": {}
   },
   "projects": {
-    "/home/kayc/repos/EFCore/EFCore.Domain/EFCore.Domain.csproj": {
+    "/home/kayc/repos/EFCore/EFCore.Data/EFCore.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kayc/repos/EFCore/EFCore.Domain/EFCore.Domain.csproj",
-        "projectName": "EFCore.Domain",
-        "projectPath": "/home/kayc/repos/EFCore/EFCore.Domain/EFCore.Domain.csproj",
+        "projectUniqueName": "/home/kayc/repos/EFCore/EFCore.Data/EFCore.Data.csproj",
+        "projectName": "EFCore.Data",
+        "projectPath": "/home/kayc/repos/EFCore/EFCore.Data/EFCore.Data.csproj",
         "packagesPath": "/home/kayc/.nuget/packages/",
-        "outputPath": "/home/kayc/repos/EFCore/EFCore.Domain/obj/",
+        "outputPath": "/home/kayc/repos/EFCore/EFCore.Data/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/kayc/.nuget/NuGet/NuGet.Config"
@@ -42,6 +42,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
