@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/home/kayc/.nuget/packages/": {}
+    "/home/kaycee/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/kayc/repos/EFCore/EFCore.Domain/EFCore.Domain.csproj",
+      "projectUniqueName": "/home/kaycee/repos/EFCore/EFCore.Domain/EFCore.Domain.csproj",
       "projectName": "EFCore.Domain",
-      "projectPath": "/home/kayc/repos/EFCore/EFCore.Domain/EFCore.Domain.csproj",
-      "packagesPath": "/home/kayc/.nuget/packages/",
-      "outputPath": "/home/kayc/repos/EFCore/EFCore.Domain/obj/",
+      "projectPath": "/home/kaycee/repos/EFCore/EFCore.Domain/EFCore.Domain.csproj",
+      "packagesPath": "/home/kaycee/.nuget/packages/",
+      "outputPath": "/home/kaycee/repos/EFCore/EFCore.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/kayc/.nuget/NuGet/NuGet.Config"
+        "/home/kaycee/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
