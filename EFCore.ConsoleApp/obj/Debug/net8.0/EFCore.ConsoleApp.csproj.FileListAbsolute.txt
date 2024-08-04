@@ -1,6 +1,0 @@
-\\wsl.localhost\Ubuntu\home\kaycee\repos\EFCore\EFCore.ConsoleApp\obj\Debug\net8.0\EFCore.ConsoleApp.csproj.AssemblyReference.cache
-\\wsl.localhost\Ubuntu\home\kaycee\repos\EFCore\EFCore.ConsoleApp\obj\Debug\net8.0\EFCore.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
-\\wsl.localhost\Ubuntu\home\kaycee\repos\EFCore\EFCore.ConsoleApp\obj\Debug\net8.0\EFCore.ConsoleApp.AssemblyInfoInputs.cache
-\\wsl.localhost\Ubuntu\home\kaycee\repos\EFCore\EFCore.ConsoleApp\obj\Debug\net8.0\EFCore.ConsoleApp.AssemblyInfo.cs
-\\wsl.localhost\Ubuntu\home\kaycee\repos\EFCore\EFCore.ConsoleApp\obj\Debug\net8.0\EFCore.ConsoleApp.csproj.CoreCompileInputs.cache
-\\wsl.localhost\Ubuntu\home\kaycee\repos\EFCore\EFCore.ConsoleApp\obj\Debug\net8.0\EFCore.ConsoleApp.sourcelink.json
