@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace EFCore.Data;
 
@@ -18,9 +19,12 @@ public class FootballLeagueDbContext : DbContext
         if(!optionsBuilder.IsConfigured)
         {
             // var connectionString = _config.GetConnectionString("DefaultConnection");
-            optionsBuilder.UseSqlServer("Data Source=localhost; Initial Catalog=FootballLeague; User Id=SA; Password=Kaydub23!; TrustServerCertificate=True");
-        }
+            optionsBuilder.UseSqlServer("Data Source=localhost; Initial Catalog=FootballLeague; User Id=SA; Password=Kaydub23!; TrustServerCertificate=True")
+            .LogTo(Console.WriteLine, new [] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+            .EnableSensitiveDataLogging();
 
+        }
+        
         // services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
         //sql optionsBuilder.UseSqlServer("Server=127.0.0.1;Database=FootballLeague;User Id=sa;Password=Jumpman23!;");
