@@ -34,7 +34,7 @@ namespace EFCore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Leagues");
+                    b.ToTable("Leagues", (string)null);
                 });
 
             modelBuilder.Entity("EFCore.Data.Team", b =>
@@ -55,7 +55,7 @@ namespace EFCore.Data.Migrations
 
                     b.HasIndex("LeagueId");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Teams", (string)null);
                 });
 
             modelBuilder.Entity("EFCore.Data.Team", b =>

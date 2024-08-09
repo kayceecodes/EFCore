@@ -1,9 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+    <!-- <ItemGroup>
+      <ProjectReference Include="..\EFCore.ConsoleApp\EFCore.ConsoleApp.csproj" />
+      <ProjectReference Include="..\EFCore.Data\EFCore.Data.csproj" />
+    </ItemGroup> -->
+
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <Nullable>disable</Nullable>
     </PropertyGroup>
 
 </Project>
