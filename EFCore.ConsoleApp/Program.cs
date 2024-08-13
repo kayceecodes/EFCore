@@ -1,4 +1,5 @@
 ﻿using EFCore.Data;
+using EFCore.Domain;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -31,6 +32,24 @@ class Program
 
         Console.WriteLine("Press Any Key To End....");
         Console.ReadKey();
+    }
+
+    static async Task AddNewLeagueWithTeams()
+    {
+        var teams = new List<Team>
+        {
+            new Team
+            {
+                Name = "Revoli United"
+            },
+            new Team
+            {
+                Name = "Waterhouse FC"
+            }
+        };
+        var league = new League { Name = "CIFA", Teams = teams };
+        await context.AddAsync(league);
+        await context.SaveChangesAsync();
     }
 
     // private static async Task TrackingVsNoTracking()
