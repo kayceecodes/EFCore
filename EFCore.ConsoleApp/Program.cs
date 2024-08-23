@@ -1,10 +1,7 @@
 ﻿using EFCore.Data;
 using EFCore.Domain;
+using EFCore.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-
-
-
-
 
 namespace EFCore.ConsoleApp;
 
@@ -29,9 +26,69 @@ class Program
         // QueryFilters();
 
         // await UpdateRecord();
+        await AddNewLeagueWithTeams();
+        await AddNewTeamsWithLeague();
+        await AddNewTeamWithLeagueId();
+        await AddNewMatches();
+
+        await QueryRelatedRecords();
 
         Console.WriteLine("Press Any Key To End....");
         Console.ReadKey();
+    }
+
+    // Note: Next go back to enter values in DB to match what Trevoir has
+
+    static async Task FilterWithRelatedData()
+    {
+        // return leagues where the team names contain 'Bay'
+        var leagues = context.Leagues.Where(q => q.Teams.Any(q => q.Name.Contains("Bay"))).ToListAsync();
+    }
+
+    async static Task AnnonymousProjection()
+    {
+        var teams = await context.Teams.Include(q => q.Coach)
+        .Select(
+         q =>
+            new 
+            {
+                TeamName = q.Name,
+                CoachName = q.Coach.Name       
+            }   
+        ).ToListAsync();
+        
+    }
+
+    async static Task StronglyTypedProjection()
+    {
+        var teams = await context.Teams.Include(q => q.Coach).Include(q => q.League).Select(
+            q =>
+            new TeamDetail {
+                Name = q.Name,
+                CoachName = q.Coach.Name,
+                LeagueName = q.League.Name
+            }).ToListAsync();
+
+        foreach(var team in teams)
+            Console.WriteLine($"Team: {team.Name} | Coach: {team.CoachName} | League: {team.LeagueName}");
+    }
+
+    static async Task QueryRelatedRecords()
+    {
+        // Get Many Related Records
+        //var leagues = context.Leagues.Include(q => q.Teams).ToList();
+        
+        // Getting grandchildren Related Records - Team -> Matches -> Home/Away Team
+        var teamWithMatchesAndOpponents = context.Teams
+        .Include(q => q.AwayMatches).ThenInclude(q => q.HomeTeam)
+        .Include(q => q.HomeMatches).ThenInclude(q => q.AwayTeam)
+        .FirstOrDefault(q => q.Id == 1);
+
+        // Get Teams with filters
+        var teamsWithTheirCoach = await context.Teams
+        .Where(q => q.AwayMatches.Count > 0)
+        .Include(q => q.Coach)
+        .ToListAsync();
     }
 
     static async Task AddNewLeagueWithTeams()
@@ -49,6 +106,27 @@ class Program
         };
         var league = new League { Name = "CIFA", Teams = teams };
         await context.AddAsync(league);
+        await context.SaveChangesAsync();
+    }
+
+    static async Task AddNewMatches()
+    {
+        var matches = new List<Match>
+        {
+            new Match
+            {
+                AwayTeamId = 1, HomeTeamId = 2, Date = new DateTime(2021, 10, 28)
+            },
+            new Match 
+            {
+                AwayTeamId = 8, HomeTeamId = 7, Date = DateTime.Now
+            },
+            new Match 
+            {
+                AwayTeamId = 8, HomeTeamId = 7, Date = DateTime.Now
+            }
+        };
+        await context.AddRangeAsync(matches);
         await context.SaveChangesAsync();
     }
 
@@ -141,4 +219,18 @@ class Program
 
     //     await context.AddRangeAsync(teams);
     // }
-}
+    static async Task AddNewTeamsWithLeague()
+    {
+        var league = new League { Name = "Bundesliga" };
+        var team = new Team { Name = "Bayern Munich", League = league };
+        await context.AddAsync(team);
+        await context.SaveChangesAsync();
+    }
+    static async Task AddNewTeamWithLeagueId()
+    {
+        var team = new Team { Name = "Fiorentina", LeagueId = 8 };
+        await context.AddAsync(team);
+
+        await context.SaveChangesAsync();
+    }
+}   
