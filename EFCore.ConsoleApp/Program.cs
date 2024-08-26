@@ -11,15 +11,6 @@ class Program
     
     static async Task Main(string[] args)
     {
-        // var league = new League { Name = "Bundesliga" };
-        // var team = new Team { Name = "Bayern Munich", League = league };
-        
-        // var league = new League { Name = "Serie A" };
-        // await context.Leagues.AddAsync(league);
-        
-        // await context.AddAsync(team);
-        // await context.SaveChangesAsync();
-
         // await AddTeamsWithLeague(league);
         // await context.SaveChangesAsync();
 
@@ -32,6 +23,7 @@ class Program
         await AddNewMatches();
 
         await QueryRelatedRecords();
+        await QueryView();
 
         Console.WriteLine("Press Any Key To End....");
         Console.ReadKey();
@@ -129,6 +121,24 @@ class Program
         await context.AddRangeAsync(matches);
         await context.SaveChangesAsync();
     }
+    async static Task QueryView()
+    {
+        var details = await context.TeamsCoachesLeagues.ToListAsync();
+    }
+    static async Task AddNewTeamsWithLeague()
+    {
+        var league = new League { Name = "Bundesliga" };
+        var team = new Team { Name = "Bayern Munich", League = league };
+        await context.AddAsync(team);
+        await context.SaveChangesAsync();
+    }
+    static async Task AddNewTeamWithLeagueId()
+    {
+        var team = new Team { Name = "Fiorentina", LeagueId = 8 };
+        await context.AddAsync(team);
+
+        await context.SaveChangesAsync();
+    }
 
     // private static async Task TrackingVsNoTracking()
     // {
@@ -219,18 +229,4 @@ class Program
 
     //     await context.AddRangeAsync(teams);
     // }
-    static async Task AddNewTeamsWithLeague()
-    {
-        var league = new League { Name = "Bundesliga" };
-        var team = new Team { Name = "Bayern Munich", League = league };
-        await context.AddAsync(team);
-        await context.SaveChangesAsync();
-    }
-    static async Task AddNewTeamWithLeagueId()
-    {
-        var team = new Team { Name = "Fiorentina", LeagueId = 8 };
-        await context.AddAsync(team);
-
-        await context.SaveChangesAsync();
-    }
 }   
