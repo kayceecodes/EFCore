@@ -139,21 +139,6 @@ class Program
 
         await context.SaveChangesAsync();
     }
-
-    static async Task AddNewTeamsWithLeague()
-    {
-        var league = new League { Name = "Bundesliga" };
-        var team = new Team { Name = "Bayern Munich", League = league };
-        await context.AddAsync(team);
-        await context.SaveChangesAsync();
-    }
-    static async Task AddNewTeamWithLeagueId()
-    {
-        var team = new Team { Name = "Fiorentina", LeagueId = 8 };
-        await context.AddAsync(team);
-
-        await context.SaveChangesAsync();
-    }
     private static async Task AddNewCoach()
     {
         var coach1 = new Coach { Name = "Jose Mourinho", TeamId = 3 };
